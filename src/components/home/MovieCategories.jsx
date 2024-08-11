@@ -1,0 +1,110 @@
+import { Link } from "react-router-dom";
+// import { useState } from "react";
+// import useGetMovieList from "../../hooks/useGetMovieList";
+// import useGetGenres from "../../hooks/useGetGenre";
+import { useContext } from "react";
+import useGetMovieList from "../../hooks/useGetMovieList";
+import useGetGenre from "../../hooks/useGetGenre";
+import { CircularProgress } from "@mui/material";
+import { HoverContext } from "../../contexts/HoverContext";
+
+const MovieCategories = () => {
+  const {
+    movies,
+    isLoading: isMovieLoading,
+    isError: isMovieError,
+  } = useGetMovieList();
+
+  const {
+    genres,
+    isLoading: isGenresLoading,
+    isError: isGenresError,
+  } = useGetGenre();
+
+  // const [hoverMovie, setHoverMovie] = useState({});
+
+  const { hoverMovie, setHoverMovie } = useContext(HoverContext);
+
+  if (isMovieLoading || isGenresLoading) {
+    return <CircularProgress />;
+  }
+
+  if (isMovieError || isGenresError) {
+    return <h1>Error</h1>;
+  }
+
+  const categorizedMovies = movies.reduce((acc, movie) => {
+    movie.genre_ids.forEach((genreId) => {
+      const genreName = genres[genreId];
+      if (genreName) {
+        if (!acc[genreName]) {
+          acc[genreName] = [];
+        }
+        acc[genreName].push(movie);
+      }
+    });
+    return acc;
+  }, {});
+
+  const hideScrollbarStyle = {
+    display: "flex",
+    overflowX: "auto",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
+  };
+
+  return (
+    <div className="container mx-auto mt-8 px-4">
+      {Object.entries(categorizedMovies).map(([genre, movies]) => (
+        <div key={genre} className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">{genre}</h2>
+          <div
+            style={{
+              ...hideScrollbarStyle,
+              WebkitOverflowScrolling: "touch",
+            }}
+            className="space-x-4 py-2"
+          >
+            {movies.map((movie) => (
+              <div
+                key={movie.id}
+                className="flex-none w-60 bg-white overflow-hidden relative"
+                onMouseEnter={() => {
+                  setHoverMovie(movie.id);
+                }}
+                onMouseLeave={() => {
+                  setHoverMovie(null);
+                }}
+              >
+                <Link to={`${movie.id}`} className="relative w-full h-full">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-full h-64 object-cover rounded-lg opacity-80 "
+                  />
+                  <div className="p-2 flex justify-center bg-gray-400 rounded-lg my-3 ">
+                    <h3
+                      className="text-lg font-semibold truncate"
+                      data-tip={movie.title}
+                    >
+                      {movie.title}
+                    </h3>
+                  </div>
+                  {hoverMovie === movie.id && (
+                    <div className=" z-10 absolute bg-black bg-opacity-75 text-white p-4 flex flex-col justify-center items-center rounded-lg top-0 left-0 h-full w-full">
+                      <p className="text-lg font-bold">{movie.title}</p>
+                      <p>Rating: {movie.vote_average}</p>
+                      <p>Release Date: {movie.release_date}</p>
+                    </div>
+                  )}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default MovieCategories;
