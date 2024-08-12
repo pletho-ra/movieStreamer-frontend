@@ -1,5 +1,7 @@
 // import { useParams } from "react-router-dom";
 
+import MovieDescription from "../components/MovieDetail/MovieDescription";
+import MovieDetails from "../components/MovieDetail/MovieDetails";
 import useGetMovieDetail from "../hooks/useGetMovieDetail";
 
 const MovieDetail = () => {
@@ -31,13 +33,21 @@ const MovieDetail = () => {
               {movie.title}
             </h1>
             <p className="text-sm md:text-base lg:text-xl max-w-2xl mx-auto text-balance">
-              {movie.overview}
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
+              voluptates eaque aspernatur harum suscipit quae laborum tempore
+              quisquam sed unde? Sit aperiam exercitationem illo aliquam illum
+              hic dolorem sapiente dolore.
             </p>
           </div>
         </div>
       </section>
 
+      <div className="w-full space-y-3">
+        <MovieDescription movie={movie.overview} />
+        <MovieDetails movie={movie} />
+      </div>
       {/* Description */}
+
       {/* Rating */}
     </>
   );

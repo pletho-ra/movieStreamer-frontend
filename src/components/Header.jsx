@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import MobileNavLink from "./MobileNavLink";
+// import MobileNavLink from "./MobileNavLink";
 import MainNavLink from "./MainNavLink";
 import { Button } from "@mui/material";
 import SignUpForm from "./form/SignUpForm";
@@ -25,9 +25,9 @@ const Header = () => {
             MovieStreamer
           </Link>
 
-          <div className="lg:hidden">
+          {/* <div className="lg:hidden">
             <MobileNavLink />
-          </div>
+          </div> */}
         </div>
         <div className="hidden lg:block">
           <MainNavLink />
