@@ -13,7 +13,3 @@ const HoverProvider = ({ children }) => {
 };
 
 export { HoverContext, HoverProvider };
-
-// HoverProvider.propTypes = {
-//   children: checkPropTypes.node,
-// };
