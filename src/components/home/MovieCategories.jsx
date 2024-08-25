@@ -1,37 +1,13 @@
 import { Link } from "react-router-dom";
-// import { useState } from "react";
-// import useGetMovieList from "../../hooks/useGetMovieList";
-// import useGetGenres from "../../hooks/useGetGenre";
 import { useContext } from "react";
-import useGetMovieList from "../../hooks/useGetMovieList";
-import useGetGenre from "../../hooks/useGetGenre";
-import { CircularProgress } from "@mui/material";
+
 import { HoverContext } from "../../contexts/HoverContext";
+import { MovieContext } from "../../contexts/MovieProvider";
 
 const MovieCategories = () => {
-  const {
-    movies,
-    isLoading: isMovieLoading,
-    isError: isMovieError,
-  } = useGetMovieList();
-
-  const {
-    genres,
-    isLoading: isGenresLoading,
-    isError: isGenresError,
-  } = useGetGenre();
-
-  // const [hoverMovie, setHoverMovie] = useState({});
+  const { movies, genres } = useContext(MovieContext);
 
   const { hoverMovie, setHoverMovie } = useContext(HoverContext);
-
-  if (isMovieLoading || isGenresLoading) {
-    return <CircularProgress />;
-  }
-
-  if (isMovieError || isGenresError) {
-    return <h1>Error</h1>;
-  }
 
   const categorizedMovies = movies.reduce((acc, movie) => {
     movie.genre_ids.forEach((genreId) => {
