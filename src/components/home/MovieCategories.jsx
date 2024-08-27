@@ -6,7 +6,6 @@ import { MovieContext } from "../../contexts/MovieProvider";
 
 const MovieCategories = () => {
   const { movies, genres } = useContext(MovieContext);
-
   const { hoverMovie, setHoverMovie } = useContext(HoverContext);
 
   const categorizedMovies = movies.reduce((acc, movie) => {
@@ -21,6 +20,20 @@ const MovieCategories = () => {
     });
     return acc;
   }, {});
+
+  const handleMouseEnter = (genre, movieId) => {
+    setHoverMovie((prevState) => ({
+      ...prevState,
+      [genre]: movieId,
+    }));
+  };
+
+  const handleMouseLeave = (genre) => {
+    setHoverMovie((prevState) => ({
+      ...prevState,
+      [genre]: null,
+    }));
+  };
 
   const hideScrollbarStyle = {
     display: "flex",
@@ -44,12 +57,12 @@ const MovieCategories = () => {
             {movies.map((movie) => (
               <div
                 key={movie.id}
-                className="flex-none w-60 bg-white overflow-hidden relative"
+                className="flex-none w-60 bg-white overflow-hidden relative "
                 onMouseEnter={() => {
-                  setHoverMovie(movie.id);
+                  handleMouseEnter(genre, movie.id);
                 }}
                 onMouseLeave={() => {
-                  setHoverMovie(null);
+                  handleMouseLeave(genre);
                 }}
               >
                 <Link to={`${movie.id}`} className="relative w-full h-full">
@@ -66,10 +79,10 @@ const MovieCategories = () => {
                       {movie.title}
                     </h3>
                   </div>
-                  {hoverMovie === movie.id && (
-                    <div className=" z-10 absolute bg-black bg-opacity-75 text-white p-4 flex flex-col justify-center items-center rounded-lg top-0 left-0 h-full w-full">
+                  {hoverMovie[genre] === movie.id && (
+                    <div className=" z-10 absolute bg-black bg-opacity-75  text-white p-4 flex flex-col justify-center items-center rounded-lg top-0 left-0 h-full w-full">
                       <p className="text-lg font-bold">{movie.title}</p>
-                      <p>Rating: {movie.vote_average}</p>
+                      <p>Rating: {movie.vote_average.toFixed(2)}</p>
                       <p>Release Date: {movie.release_date}</p>
                     </div>
                   )}
