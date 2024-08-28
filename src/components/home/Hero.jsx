@@ -7,7 +7,7 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          opacity: 0.3, // Set desired opacity for the background image
+          opacity: 0.3,
         }}
       ></div>
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">

@@ -1,5 +1,3 @@
-// import { useGetMovieList } from "./api/myMovieListApi";
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -23,10 +21,6 @@ const router = createBrowserRouter(
   )
 );
 const App = () => {
-  // const { genresMap, isLoading, isError } = useGetGenres();
-
-  // console.log(genresMap);
-
   return <RouterProvider router={router} />;
 };
 
