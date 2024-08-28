@@ -1,5 +1,3 @@
-// src/components/SignupModal.jsx
-
 import { Modal, Box, TextField, Typography, Button } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 

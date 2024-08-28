@@ -4,7 +4,7 @@ import MainNavLink from "./MainNavLink";
 import { Button } from "@mui/material";
 import SignUpForm from "./form/SignUpForm";
 import { useState } from "react";
-import SearchMovie from "./SearchMovie";
+import SearchMovie from "./search/SearchMovie";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,6 @@ const Header = () => {
   return (
     <div className="flex justify-center items-center w-full">
       <div className=" max-auto flex justify-between items-center w-full">
-        {/* logo */}
         <div className="space-x-2 flex justify-between items-center">
           <Link to="/" className="text-xl font-bold tracking-tighter">
             MovieStreamer
@@ -32,8 +31,6 @@ const Header = () => {
         <div className="hidden lg:block">
           <MainNavLink />
         </div>
-
-        {/* search and signUp */}
         <div className="flex items-center space-x-2">
           <SearchMovie />
           <Link to="/">
