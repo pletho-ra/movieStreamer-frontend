@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import useGetMovieList from "../hooks/useGetMovieList";
-import { CircularProgress } from "@mui/material";
 import useGetGenre from "../hooks/useGetGenre";
+import CircularWithValueLabel from "../components/reusable/PageLoad";
 
 // Create the context
 export const MovieContext = createContext();
@@ -20,7 +20,7 @@ export const MovieProvider = ({ children }) => {
   } = useGetGenre();
 
   if (isMovieLoading || isGenreLaoding) {
-    return <CircularProgress />;
+    return <CircularWithValueLabel />;
   }
 
   if (isMovieError || isGenreError) {

@@ -1,5 +1,3 @@
-// import { useParams } from "react-router-dom";
-
 import MovieDescription from "../components/MovieDetail/MovieDescription";
 import MovieDetails from "../components/MovieDetail/MovieDetails";
 import useGetMovieDetail from "../hooks/useGetMovieDetail";
@@ -46,9 +44,6 @@ const MovieDetail = () => {
         <MovieDescription movie={movie.overview} />
         <MovieDetails movie={movie} />
       </div>
-      {/* Description */}
-
-      {/* Rating */}
     </>
   );
 };

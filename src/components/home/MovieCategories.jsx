@@ -80,9 +80,9 @@ const MovieCategories = () => {
                     </h3>
                   </div>
                   {hoverMovie[genre] === movie.id && (
-                    <div className=" z-10 absolute bg-black bg-opacity-75  text-white p-4 flex flex-col justify-center items-center rounded-lg top-0 left-0 h-full w-full">
+                    <div className="absolute inset-0 bg-black bg-opacity-75 text-white p-4 flex flex-col justify-center items-center rounded-lg">
                       <p className="text-lg font-bold">{movie.title}</p>
-                      <p>Rating: {movie.vote_average.toFixed(2)}</p>
+                      <p>Rating: {movie.vote_average}</p>
                       <p>Release Date: {movie.release_date}</p>
                     </div>
                   )}
