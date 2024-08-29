@@ -56,19 +56,21 @@ const MovieDetails = ({ movie }) => {
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
-                  <StarIcon style={{ color: "#F6BE00" }} />
+                  <StarIcon style={{ color: "#F6BE00" }} />{" "}
+                  <span> {movie.vote_average.toFixed(2)}</span>
                 </span>
               </div>
             </div>
             <div className="rounded bg-gray-600">
               <div className="ml-3">
-                <span>IMDB</span>
+                <span>Streamvibe</span>
                 <span className="flex items-center">
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
                   <StarIcon style={{ color: "#F6BE00" }} />
+                  <span>{movie.vote_average.toFixed(2)}</span>
                 </span>
               </div>
             </div>

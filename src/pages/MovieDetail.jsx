@@ -31,17 +31,14 @@ const MovieDetail = () => {
               {movie.title}
             </h1>
             <p className="text-sm md:text-base lg:text-xl max-w-2xl mx-auto text-balance">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
-              voluptates eaque aspernatur harum suscipit quae laborum tempore
-              quisquam sed unde? Sit aperiam exercitationem illo aliquam illum
-              hic dolorem sapiente dolore.
+              {movie.overview}
             </p>
           </div>
         </div>
       </section>
 
       <div className="w-full space-y-3">
-        <MovieDescription movie={movie.overview} />
+        <MovieDescription movie={movie} />
         <MovieDetails movie={movie} />
       </div>
     </>
