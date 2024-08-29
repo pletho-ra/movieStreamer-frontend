@@ -26,7 +26,7 @@ const SignupModal = ({ open, handleClose }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 350,
+          width: "40vw",
           maxHeight: "80vh",
           bgcolor: "background.paper",
           boxShadow: 24,
@@ -36,22 +36,30 @@ const SignupModal = ({ open, handleClose }) => {
           scrollbarWidth: "none",
         }}
       >
-        <Typography id="signup-modal-title" variant="h6" component="h2">
-          Signup
+        <Typography
+          id="signup-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ textAlign: "center" }}
+        >
+          SignIn to MovieStreamer
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="username"
             control={control}
             defaultValue=""
-            rules={{ required: "username is required" }}
+            className="bg-gray-200"
+            rules={{ required: "Username is required" }}
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
                 margin="normal"
                 required
                 fullWidth
-                label="UserName"
+                label="Username"
+                className="bg-gray-200"
+                InputLabelProps={{ shrink: true }}
                 autoComplete="username"
                 autoFocus
                 error={!!error}
@@ -71,8 +79,9 @@ const SignupModal = ({ open, handleClose }) => {
                 required
                 fullWidth
                 label="Email Address"
+                className="bg-gray-200"
+                InputLabelProps={{ shrink: true }}
                 autoComplete="email"
-                autoFocus
                 error={!!error}
                 helperText={error ? error.message : null}
               />
@@ -89,8 +98,9 @@ const SignupModal = ({ open, handleClose }) => {
                 required
                 fullWidth
                 label="Number"
+                className="bg-gray-200"
+                InputLabelProps={{ shrink: true }}
                 autoComplete="number"
-                autoFocus
                 error={!!error}
                 helperText={error ? error.message : null}
               />
@@ -108,7 +118,9 @@ const SignupModal = ({ open, handleClose }) => {
                 required
                 fullWidth
                 label="Password"
+                className="bg-gray-200"
                 type="password"
+                InputLabelProps={{ shrink: true }}
                 autoComplete="current-password"
                 error={!!error}
                 helperText={error ? error.message : null}
@@ -116,10 +128,10 @@ const SignupModal = ({ open, handleClose }) => {
             )}
           />
           <Controller
-            name="confirm password"
+            name="confirmPassword"
             control={control}
             defaultValue=""
-            required
+            rules={{ required: "Confirm Password is required" }}
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
@@ -127,7 +139,9 @@ const SignupModal = ({ open, handleClose }) => {
                 required
                 fullWidth
                 label="Confirm Password"
+                className="bg-gray-200"
                 type="password"
+                InputLabelProps={{ shrink: true }}
                 autoComplete="current-password"
                 error={!!error}
                 helperText={error ? error.message : null}
@@ -137,7 +151,6 @@ const SignupModal = ({ open, handleClose }) => {
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button
               type="submit"
-              width="20%"
               variant="contained"
               sx={{
                 mt: 3,
