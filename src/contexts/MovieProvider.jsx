@@ -26,7 +26,6 @@ export const MovieProvider = ({ children }) => {
   if (isMovieError || isGenreError) {
     return <h1> Error occured!</h1>;
   }
-  console.log(genres);
 
   return (
     <MovieContext.Provider value={{ movies, genres }}>
